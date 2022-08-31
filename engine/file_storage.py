@@ -1,5 +1,5 @@
 """ A storage location """
-from models.base_model import BaseModel
+from ..models.base_model import BaseModel
 import json
 
 class FileStorage:
