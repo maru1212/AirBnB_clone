@@ -13,7 +13,7 @@ class BaseModel:
                 args: list of arguments
                 kwargs: dictionary (key & values) of the arguments
         """
-        date_format = '%Y-%m-%dT%H:%M:%S.%f'
+        date_format = '%Y-%m-%d %H:%M:%S.%f'
         if not kwargs:
             self.id = uuid4()
             self.created_at = datetime.utcnow()
@@ -21,7 +21,7 @@ class BaseModel:
         else:
             for key, value in kwargs.items():
                 if key in ("created_at", "updated_at"):
-                    self.__dict__[key] = datetime.isoformat.strptime(value, date_format)
+                    self.__dict__[key] = datetime.strptime(value, date_format)
                 elif key[0] == id:
                     self.__dict__[key] = str(value)
                 else:
