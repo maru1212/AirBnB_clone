@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ A class BaseModel """
 import json
 from datetime import datetime
