@@ -1,8 +1,9 @@
-#!/usr/bin/python3
+"""#!/usr/bin/python3"""
 """ A class BaseModel """
 import json
 from datetime import datetime
 from uuid import uuid4
+
 
 class BaseModel:
     """ A class which creates a unique ID for users and updates time when a new user 
