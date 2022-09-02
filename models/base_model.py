@@ -3,6 +3,7 @@
 import json
 from datetime import datetime
 from uuid import uuid4
+import models
 
 
 class BaseModel:
@@ -15,7 +16,7 @@ class BaseModel:
                 args: list of arguments
                 kwargs: dictionary (key & values) of the arguments
         """
-        date_format = '%Y-%m-%d %H:%M:%S.%f'
+        date_format = "%Y-%m-%d %H:%M:%S.%f"
         if not kwargs:
             self.id = uuid4()
             self.created_at = datetime.utcnow()
@@ -32,6 +33,7 @@ class BaseModel:
     def save(self):
         """ Saves the updated time to the current time of update."""
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     def __str__(self):
         """ The return string value for the class BaseModel. """
@@ -39,7 +41,6 @@ class BaseModel:
 
     def to_dict(self):
         """ Saves the data into a dictionary format of python object"""
-        date_format = '%Y-%m-%dT%H:%M:%S.%f'
         object_map = {}
         for k, v in self.__dict__.items():
             if k == "created_at" or "updated_at":

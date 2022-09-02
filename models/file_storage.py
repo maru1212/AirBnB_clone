@@ -1,5 +1,6 @@
+
 """ A storage location """
-from ..models.base_model import BaseModel
+from models.base_model import BaseModel
 import json
 
 class FileStorage:
@@ -17,10 +18,10 @@ class FileStorage:
 
     def save(self):
         """ Serializes __objects to the JSON file path __file_path."""
+        #dicti = BaseModel.to_dict(self)
+        object_dict = {k: v.to_dict() for k, v in self.__objects.items()}
         with open(self.__file_path, "w+") as file:
-            for key, value in self.__objects.items():
-                self.__objects[key] = value.to_dict()
-            return (json.dump(self.__objects, file))
+            json.dump(object_dict, file)
 
     def reload(self):
         """ deserializes the JSON file to __objects (only if the JSON
