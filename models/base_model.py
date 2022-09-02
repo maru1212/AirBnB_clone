@@ -17,11 +17,10 @@ class BaseModel:
                 kwargs: dictionary (key & values) of the arguments
         """
         date_format = "%Y-%m-%d %H:%M:%S.%f"
-        if not kwargs:
-            self.id = uuid4()
-            self.created_at = datetime.utcnow()
-            self.updated_at = datetime.utcnow()
-        else:
+        self.id = uuid4()
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
+        if kwargs:
             for key, value in kwargs.items():
                 if key in ("created_at", "updated_at"):
                     self.__dict__[key] = datetime.strptime(value, date_format)
@@ -29,6 +28,8 @@ class BaseModel:
                     self.__dict__[key] = str(value)
                 else:
                     self.__dict__[key] = value
+        else:
+            models.storage.new(self)
     
     def save(self):
         """ Saves the updated time to the current time of update."""

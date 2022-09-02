@@ -1,1 +1,10 @@
-{}
+{
+    "BaseModel.[BaseModel] (19684b6b-a379-42d4-8738-bb82833207d0) {'id': UUID('19684b6b-a379-42d4-8738-bb82833207d0'), 'created_at': datetime.datetime(2022, 9, 2, 19, 34, 18, 485640), 'updated_at': datetime.datetime(2022, 9, 2, 19, 34, 18, 485640)}": {
+        "id": "19684b6b-a379-42d4-8738-bb82833207d0",
+        "created_at": "2022-09-02 19:34:18.485640",
+        "updated_at": "2022-09-02 19:34:18.485640",
+        "name": "My_First_Model",
+        "my_number": "89",
+        "__class__": "BaseModel"
+    }
+}

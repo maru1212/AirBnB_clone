@@ -21,7 +21,7 @@ class FileStorage:
         #dicti = BaseModel.to_dict(self)
         object_dict = {k: v.to_dict() for k, v in self.__objects.items()}
         with open(self.__file_path, "w+") as file:
-            json.dump(object_dict, file)
+            json.dump(object_dict, file, indent = 4)
 
     def reload(self):
         """ deserializes the JSON file to __objects (only if the JSON
