@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 """ A storage location """
 from models.base_model import BaseModel
 import json
