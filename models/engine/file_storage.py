@@ -2,6 +2,7 @@
 """ A storage location """
 import json
 import os
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -29,9 +30,7 @@ class FileStorage:
         deserializes the JSON file to __objects only if the JSON
         file exists; otherwise, does nothing
         """
-        current_classes = {'BaseModel': BaseModel, 'User': User,
-                           'Amenity': Amenity, 'City': City, 'State': State,
-                           'Place': Place, 'Review': Review}
+        current_classes = {'BaseModel': BaseModel}
 
         if not os.path.exists(FileStorage.__file_path):
             return
