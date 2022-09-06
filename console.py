@@ -12,10 +12,6 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
-    def emptyline(self, line):
-        """Handles empty lines. """
-        return Cmd.emptyline(self)
-
     def do_quit(self, line):
         """Quit command to exit the program.
         """
@@ -27,7 +23,6 @@ class HBNBCommand(cmd.Cmd):
         Args:
             line (args): argument to for quiting the terminal.
         """
-        print("bye, bye")
         return True
 
 if __name__ == "__main__":
