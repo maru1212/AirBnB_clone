@@ -26,6 +26,7 @@ class HBNBCommand(cmd.Cmd):
         Args:
             line (args): argument to for quiting the terminal.
         """
+        print("")
         return True
 
 if __name__ == "__main__":
