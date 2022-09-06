@@ -173,9 +173,6 @@ def validate_classname(arguments, check_id=False):
     if arguments[0] not in current_classes.keys():
         print("** class doesn't exist **")
         return False
-    # if len(arguments) < 2 and check_id:
-    #     print("** instance id missing **")
-    #     return False
     return True
 
 
