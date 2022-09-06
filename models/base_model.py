@@ -15,20 +15,20 @@ class BaseModel:
                 args: list of arguments
                 kwargs: dictionary (key & values) of the arguments
         """
-        date_format = "%Y-%m-%d %H:%M:%S.%f"
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        if kwargs:
+        if len(kwargs) > 0:
             for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
                 if key in ("created_at", "updated_at"):
-                    self.__dict__[key] = datetime.strptime(value, date_format)
-                elif key[0] == id:
-                    self.__dict__[key] = str(value)
-                else:
-                    self.__dict__[key] = value
-        else:
-            models.storage.new(self)
+                    value = datetime.fromisoformat(value)
+                setattr(self, key, value)
+        models.storage.new(self)
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def save(self):
         """ Saves the updated time to the current time of update."""
@@ -42,10 +42,10 @@ class BaseModel:
 
     def to_dict(self):
         """ Saves the data into a dictionary format of python object"""
-        object_map = {}
-        for k, v in self.__dict__.items():
-            if k == "created_at" or "updated_at":
-                object_map[k] = str(v)
+        object_map = {**self.__dict__}
+        for k, v in object_map.items():
+            if k in ("created_at", "updated_at"):
+                object_map[k] = v.isoformat()
             else:
                 object_map[k] = v
         object_map["__class__"] = self.__class__.__name__
