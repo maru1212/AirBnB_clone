@@ -1,29 +1,43 @@
 #!/usr/bin/python3
-""" A storage location """
-import json
+"""
+Module: file_storage.py
+Defines a `FileStorage` class.
+"""
 import os
+import json
 from models.base_model import BaseModel
+from models.user import User
 
 
-class FileStorage:
-    """ File Storage Class. """
+class FileStorage():
+    """
+    serializes instances to a JSON file and
+    deserializes JSON file to instances
+    """
+
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """ A method which returns all the ditctionary objects."""
-        return self.__objects
+        """
+        returns the dictionary __objects
+        """
+        return FileStorage.__objects
 
     def new(self, obj):
-        """ A method which appends new elements to __objects dictionary."""
-        key = "{}.{}".format(__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        """
+        sets in __objects the obj with key <obj class name>.id
+        """
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        FileStorage.__objects[key] = obj
 
     def save(self):
-        """ Serializes __objects to the JSON file path __file_path."""
-        object_dict = {k: v.to_dict() for k, v in self.__objects.items()}
-        with open(self.__file_path, "w+") as file:
-            json.dump(object_dict, file, indent=4)
+        """
+        serializes __objects to the JSON file (path: __file_path)
+        """
+        with open(FileStorage.__file_path, 'w') as f:
+            json.dump(
+                {k: v.to_dict() for k, v in FileStorage.__objects.items()}, f)
 
     def reload(self):
         """
