@@ -11,6 +11,9 @@ class HBNBCommand(cmd.Cmd):
     """ Console Class. """
 
     prompt = "(hbnb) "
+    def emptyline(self):
+        """Overides the default emptyline + return."""
+        pass
 
     def do_quit(self, line):
         """Quit command to exit the program.
